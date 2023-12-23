@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="style.css">
+    <title>Fruit Catcher</title>
+</head>
+<body>
+    <div class="lodingpage" id="loadingpage">
+        <div class="bg1">
+            <img src="./gameUI/Apple_king _logo.png">
+            <button class="start-btn" onclick="gameplay()">Catch to Learn</button> 
+        </div>
+        <div class="bg2"></div>
+    </div>
+    
+    <div class="gamecontainer" style="display: none;">
+        <div class="bg1">
+            <div id="score" class="score-box">Score: 0</div>
+            <div id="basket" class="basket"></div>
+            <div id="apple1"></div>
+            <div id="orange1" class="orange"></div>
+            <div class="blueberry" id="blueberry1"></div>
+            <div class="banana" id="banana1"></div>
+            <div class="parent_div">
+                <div id="popup" class="popup">
+                        <div class="popup-content">
+                            <div class="applekingparent">
+                                <div class="applekingimage">
+                                    <h1>Apple King</h1>
+                                </div>
+                            </div>
+                            <h1 id="question"></h1>
+                            <form id="optionsForm"></form>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg2"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
