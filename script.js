@@ -712,13 +712,16 @@ function startGame() {
   event.preventDefault();
   if (touchStartX !== undefined && basketStartX !== undefined) {
     const touchX = event.touches[0].clientX;
-    const deltaX = (touchX - touchStartX) / window.innerWidth * 100; // Convert to vw
-    let newLeft = (basketStartX + deltaX) + "vw";
+    const deltaX = touchX - touchStartX;
+    let newLeft = basketStartX + deltaX;
 
-    const basketWidth = basket.offsetWidth / window.innerWidth * 100; // Convert to vw
+    const windowWidth = window.innerWidth;
+    const basketWidth = basket.offsetWidth;
 
-    newLeft = Math.min(Math.max(newLeft, 0), 100 - basketWidth);
-    basket.style.left = newLeft;
+    newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
+
+    // Convert newLeft to vw before setting it
+    basket.style.left = (newLeft / windowWidth) * 100 + "vw";
   }
 }
 
@@ -726,6 +729,7 @@ document.addEventListener("touchend", function (e) {
   touchStartX = undefined;
   basketStartX = undefined;
 });
+
 
 
   function moveBasket(e) {
