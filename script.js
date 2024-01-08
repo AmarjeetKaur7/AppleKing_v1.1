@@ -682,49 +682,25 @@ function startGame() {
   document.addEventListener("touchstart", handleTouchStart);
   document.addEventListener("touchmove", handleTouchMove);
 
-  // function handleTouchStart(event) {
-  //   touchStartX = event.touches[0].clientX;
-  //   basketStartX = parseFloat(basket.style.left) || 0;
-  // }
-
-  // function handleTouchMove(event) {
-  //   event.preventDefault();
-  //   if (touchStartX !== undefined && basketStartX !== undefined) {
-  //     const touchX = event.touches[0].clientX;
-  //     const deltaX = touchX - touchStartX;
-  //     let newLeft = basketStartX + deltaX;
-
-  //     const windowWidth = window.innerWidth;
-  //     const basketWidth = basket.offsetWidth;
-
-  //     newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
-  //     basket.style.left = newLeft + "px";
-  //   }
-  // }
-
   function handleTouchStart(event) {
-  touchStartX = event.touches[0].clientX;
-  basketStartX = parseFloat(basket.style.left) || 0;
-}
-
-function handleTouchMove(event) {
-  event.preventDefault();
-  if (touchStartX !== undefined && basketStartX !== undefined) {
-    const touchX = event.touches[0].clientX;
-    const deltaX = touchX - touchStartX;
-    let newLeft = basketStartX + deltaX;
-
-    const windowWidth = window.innerWidth;
-    const basketWidth = basket.offsetWidth;
-
-    // Adjust the left and right boundaries for mobile responsiveness
-    const minLeft = 0;
-    const maxLeft = windowWidth - basketWidth;
-
-    newLeft = Math.min(Math.max(newLeft, minLeft), maxLeft);
-    basket.style.left = newLeft + "px";
+    touchStartX = event.touches[0].clientX;
+    basketStartX = parseFloat(basket.style.left) || 0;
   }
-}
+
+  function handleTouchMove(event) {
+    event.preventDefault();
+    if (touchStartX !== undefined && basketStartX !== undefined) {
+      const touchX = event.touches[0].clientX;
+      const deltaX = touchX - touchStartX;
+      let newLeft = basketStartX + deltaX;
+
+      const windowWidth = window.innerWidth;
+      const basketWidth = basket.offsetWidth;
+
+      newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
+      basket.style.left = newLeft + "px";
+    }
+  }
 
   document.addEventListener("touchend", function (e) {
     touchStartX = undefined;
