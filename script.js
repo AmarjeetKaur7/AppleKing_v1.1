@@ -698,7 +698,7 @@ function startGame() {
       const windowWidth = window.innerWidth;
       const basketWidth = basket.offsetWidth;
 
-      newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth + 5 );
+      newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth -2 );
       basket.style.left = newLeft + 35  + "px";
     }
   }
