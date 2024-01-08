@@ -679,28 +679,66 @@ function startGame() {
 
   document.addEventListener("keydown", moveBasket);
 
-  document.addEventListener("touchstart", handleTouchStart);
-  document.addEventListener("touchmove", handleTouchMove);
+  // document.addEventListener("touchstart", handleTouchStart);
+  // document.addEventListener("touchmove", handleTouchMove);
 
-  function handleTouchStart(event) {
-    touchStartX = event.touches[0].clientX;
-    basketStartX = parseFloat(basket.style.left) || 0;
-  }
+  // function handleTouchStart(event) {
+  //   touchStartX = event.touches[0].clientX;
+  //   basketStartX = parseFloat(basket.style.left) || 0;
+  // }
 
-  function handleTouchMove(event) {
-    event.preventDefault();
-    if (touchStartX !== undefined && basketStartX !== undefined) {
-      const touchX = event.touches[0].clientX;
-      const deltaX = touchX - touchStartX;
-      let newLeft = basketStartX + deltaX;
+  // function handleTouchMove(event) {
+  //   event.preventDefault();
+  //   if (touchStartX !== undefined && basketStartX !== undefined) {
+  //     const touchX = event.touches[0].clientX;
+  //     const deltaX = touchX - touchStartX;
+  //     let newLeft = basketStartX + deltaX;
 
-      const windowWidth = window.innerWidth;
-      const basketWidth = basket.offsetWidth;
+  //     const windowWidth = window.innerWidth;
+  //     const basketWidth = basket.offsetWidth;
 
-      newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
-      basket.style.left = newLeft + "px";
+  //     newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
+  //     basket.style.left = newLeft + "px";
+  //   }
+  // }
+
+document.addEventListener("touchstart", handleTouchStart);
+document.addEventListener("touchmove", handleTouchMove);
+
+function handleTouchStart(event) {
+  touchStartX = event.touches[0].clientX;
+  basketStartX = parseFloat(basket.style.left) || 0;
+}
+
+function handleTouchMove(event) {
+  event.preventDefault();
+  if (touchStartX !== undefined && basketStartX !== undefined) {
+    const touchX = event.touches[0].clientX;
+    const deltaX = touchX - touchStartX;
+    let newLeft = basketStartX + deltaX;
+
+    const windowWidth = window.innerWidth;
+    const basketWidth = basket.offsetWidth;
+    const vw = window.innerWidth / 100;
+
+    let minLeft = 10;
+    let maxRight = 90;
+
+    if (windowWidth < 768) {
+      minLeft = 10;
+      maxRight = 90;
     }
+
+    // Convert the pixel value to vw
+    newLeft = newLeft / vw;
+
+    // Ensure the basket stays within the boundaries of the image
+    newLeft = Math.min(Math.max(newLeft, minLeft), maxRight - basketWidth / vw);
+
+    basket.style.left = `${newLeft}vw`;
   }
+}
+
  
 
   document.addEventListener("touchend", function (e) {
