@@ -680,8 +680,8 @@ function startGame() {
 
   document.addEventListener("keydown", moveBasket);
 
-  document.addEventListener("touchstart", handleTouchStart);
-  document.addEventListener("touchmove", handleTouchMove);
+  // document.addEventListener("touchstart", handleTouchStart);
+  // document.addEventListener("touchmove", handleTouchMove);
 
   // function handleTouchStart(event) {
   //   touchStartX = event.touches[0].clientX;
@@ -702,6 +702,19 @@ function startGame() {
   //     basket.style.left = newLeft + "px";
   //   }
   // }
+
+  // document.addEventListener("touchend", function (e) {
+  //   touchStartX = undefined;
+  //   basketStartX = undefined;
+  // });
+
+
+  document.addEventListener("touchstart", handleTouchStart);
+document.addEventListener("touchmove", handleTouchMove);
+document.addEventListener("touchend", function (e) {
+  touchStartX = undefined;
+  basketStartX = undefined;
+});
 
 function handleTouchStart(event) {
   touchStartX = event.touches[0].clientX;
@@ -728,13 +741,6 @@ function handleTouchMove(event) {
   }
 }
 
-
- 
-
-  document.addEventListener("touchend", function (e) {
-    touchStartX = undefined;
-    basketStartX = undefined;
-  });
 
   function moveBasket(e) {
     const deviceWidth = window.innerWidth;
