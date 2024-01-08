@@ -680,8 +680,8 @@ function startGame() {
 
   document.addEventListener("keydown", moveBasket);
 
-  // document.addEventListener("touchstart", handleTouchStart);
-  // document.addEventListener("touchmove", handleTouchMove);
+  document.addEventListener("touchstart", handleTouchStart);
+  document.addEventListener("touchmove", handleTouchMove);
 
   // function handleTouchStart(event) {
   //   touchStartX = event.touches[0].clientX;
@@ -722,8 +722,7 @@ function handleTouchMove(event) {
     newLeft = (newLeft / windowWidth) * 100;
 
     // Ensure the basket stays within the boundaries of the image
-    // newLeft = Math.min(Math.max(newLeft, 0), 100 - (basketWidth / windowWidth) * 100);
-    newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
+    newLeft = Math.min(Math.max(newLeft, 0), 100 - (basketWidth / windowWidth) * 100);
 
     basket.style.left = `${newLeft}vw`;
   }
