@@ -721,7 +721,8 @@ function handleTouchMove(event) {
     newLeft = (newLeft / windowWidth) * 100;
 
     // Ensure the basket stays within the boundaries of the image
-    newLeft = Math.min(Math.max(newLeft, 0), 100 - (basketWidth / windowWidth) * 100);
+    // newLeft = Math.min(Math.max(newLeft, 0), 100 - (basketWidth / windowWidth) * 100);
+    newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
 
     basket.style.left = `${newLeft}vw`;
   }
