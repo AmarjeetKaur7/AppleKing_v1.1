@@ -688,25 +688,44 @@ function startGame() {
     basketStartX = parseFloat(basket.style.left) || 0;
   }
 
+  // function handleTouchMove(event) {
+  //   event.preventDefault();
+  //   if (touchStartX !== undefined && basketStartX !== undefined) {
+  //     const touchX = event.touches[0].clientX;
+  //     const deltaX = touchX - touchStartX;
+  //     let newLeft = basketStartX + deltaX;
+
+  //     const windowWidth = window.innerWidth;
+  //     const basketWidth = basket.offsetWidth;
+
+  //     newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
+  //     basket.style.left = newLeft + "px";
+  //   }
+  // }
+
+  // document.addEventListener("touchend", function (e) {
+  //   touchStartX = undefined;
+  //   basketStartX = undefined;
+  // });
+
   function handleTouchMove(event) {
-    event.preventDefault();
-    if (touchStartX !== undefined && basketStartX !== undefined) {
-      const touchX = event.touches[0].clientX;
-      const deltaX = touchX - touchStartX;
-      let newLeft = basketStartX + deltaX - 50;
+  event.preventDefault();
+  if (touchStartX !== undefined && basketStartX !== undefined) {
+    const touchX = event.touches[0].clientX;
+    const deltaX = (touchX - touchStartX) / window.innerWidth * 100; // Convert to vw
+    let newLeft = (basketStartX + deltaX) + "vw";
 
-      const windowWidth = window.innerWidth;
-      const basketWidth = basket.offsetWidth;
+    const basketWidth = basket.offsetWidth / window.innerWidth * 100; // Convert to vw
 
-      newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
-      basket.style.left = newLeft + "px";
-    }
+    newLeft = Math.min(Math.max(newLeft, 0), 100 - basketWidth);
+    basket.style.left = newLeft;
   }
+}
 
-  document.addEventListener("touchend", function (e) {
-    touchStartX = undefined;
-    basketStartX = undefined;
-  });
+document.addEventListener("touchend", function (e) {
+  touchStartX = undefined;
+  basketStartX = undefined;
+});
 
 
   function moveBasket(e) {
