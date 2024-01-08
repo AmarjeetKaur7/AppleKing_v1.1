@@ -693,7 +693,7 @@ function startGame() {
     if (touchStartX !== undefined && basketStartX !== undefined) {
       const touchX = event.touches[0].clientX;
       const deltaX = touchX - touchStartX;
-      let newLeft = basketStartX + deltaX;
+      let newLeft = basketStartX + deltaX + 20;
 
       const windowWidth = window.innerWidth;
       const basketWidth = basket.offsetWidth;
