@@ -702,9 +702,6 @@ function startGame() {
   //   }
   // }
 
-document.addEventListener("touchstart", handleTouchStart);
-document.addEventListener("touchmove", handleTouchMove);
-
 function handleTouchStart(event) {
   touchStartX = event.touches[0].clientX;
   basketStartX = parseFloat(basket.style.left) || 0;
@@ -719,25 +716,17 @@ function handleTouchMove(event) {
 
     const windowWidth = window.innerWidth;
     const basketWidth = basket.offsetWidth;
-    const vw = window.innerWidth / 100;
-
-    let minLeft = 10;
-    let maxRight = 90;
-
-    if (windowWidth < 768) {
-      minLeft = 10;
-      maxRight = 90;
-    }
 
     // Convert the pixel value to vw
-    newLeft = newLeft / vw;
+    newLeft = (newLeft / windowWidth) * 100;
 
     // Ensure the basket stays within the boundaries of the image
-    newLeft = Math.min(Math.max(newLeft, minLeft), maxRight - basketWidth / vw);
+    newLeft = Math.min(Math.max(newLeft, 0), 100 - (basketWidth / windowWidth) * 100);
 
     basket.style.left = `${newLeft}vw`;
   }
 }
+
 
  
 
