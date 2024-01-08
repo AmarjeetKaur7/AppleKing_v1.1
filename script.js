@@ -688,48 +688,25 @@ function startGame() {
     basketStartX = parseFloat(basket.style.left) || 0;
   }
 
-  // function handleTouchMove(event) {
-  //   event.preventDefault();
-  //   if (touchStartX !== undefined && basketStartX !== undefined) {
-  //     const touchX = event.touches[0].clientX;
-  //     const deltaX = touchX - touchStartX;
-  //     let newLeft = basketStartX + deltaX;
-
-  //     const windowWidth = window.innerWidth;
-  //     const basketWidth = basket.offsetWidth;
-
-  //     newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
-  //     basket.style.left = newLeft + "px";
-  //   }
-  // }
-
-  // document.addEventListener("touchend", function (e) {
-  //   touchStartX = undefined;
-  //   basketStartX = undefined;
-  // });
-
   function handleTouchMove(event) {
-  event.preventDefault();
-  if (touchStartX !== undefined && basketStartX !== undefined) {
-    const touchX = event.touches[0].clientX;
-    const deltaX = touchX - touchStartX;
-    let newLeft = basketStartX + deltaX;
+    event.preventDefault();
+    if (touchStartX !== undefined && basketStartX !== undefined) {
+      const touchX = event.touches[0].clientX;
+      const deltaX = touchX - touchStartX;
+      let newLeft = basketStartX + deltaX;
 
-    const windowWidth = window.innerWidth;
-    const basketWidth = basket.offsetWidth;
+      const windowWidth = window.innerWidth;
+      const basketWidth = basket.offsetWidth;
 
-    newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
-
-    // Convert newLeft to vw before setting it
-    basket.style.left = (newLeft / windowWidth) * 100 + "vw";
+      newLeft = Math.min(Math.max(newLeft, 0), windowWidth - basketWidth);
+      basket.style.left = newLeft + "px";
+    }
   }
-}
 
-document.addEventListener("touchend", function (e) {
-  touchStartX = undefined;
-  basketStartX = undefined;
-});
-
+  document.addEventListener("touchend", function (e) {
+    touchStartX = undefined;
+    basketStartX = undefined;
+  });
 
 
   function moveBasket(e) {
